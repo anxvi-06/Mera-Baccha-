@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -798,6 +799,26 @@ p {
     text-align: center;
 
     transition: .5s ease;
+
+    overflow: hidden;
+}
+
+.photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: .6s ease;
+}
+
+.photo:hover img {
+
+    transform: scale(1.05);
 }
 
 .photo:hover {
@@ -1690,40 +1711,34 @@ p {
 
             <div class="photos">
 
+                <!-- PHOTO 1 -->
                 <div class="photo">
-                    📸
-                    <br>
-                    CHOTU
+                    <img src="images/chotu.jpg" alt="Chotu">
                 </div>
 
+                <!-- PHOTO 2 -->
                 <div class="photo">
-                    ♡
-                    <br>
-                    BETUU
+                    <img src="images/betuu.jpg" alt="Betuuu">
                 </div>
 
+                <!-- PHOTO 3 -->
                 <div class="photo">
-                    📸
-                    <br>
-                    MERA BACCHA
+                    <img src="images/merabaccha.jpg" alt="Mera Baccha">
                 </div>
 
+                <!-- PHOTO 4 -->
                 <div class="photo">
-                    🖤
-                    <br>
-                    MERI JAAN
+                    <img src="images/merijaan.jpg" alt="Meri Jaan">
                 </div>
 
+                <!-- PHOTO 5 -->
                 <div class="photo">
-                    ♡
-                    <br>
-                    PRINCESS
+                    <img src="images/princess.jpg" alt="Princess">
                 </div>
 
+                <!-- PHOTO 6 -->
                 <div class="photo">
-                    ✦
-                    <br>
-                    NERD
+                    <img src="images/nerd.jpg" alt="Nerd">
                 </div>
 
             </div>
@@ -2086,6 +2101,7 @@ const questions = {
         ]
 
     }
+
 
 };
 
@@ -2896,3 +2912,23 @@ setInterval(
 
 </body>
 </html>
+```
+
+### Now your only job
+
+Create this folder in GitHub:
+
+```text
+Mera-Baccha-
+└── images
+    ├── chotu.jpg
+    ├── betuu.jpg
+    ├── merabaccha.jpg
+    ├── merijaan.jpg
+    ├── princess.jpg
+    └── nerd.jpg
+```
+
+Then upload your **6 actual pictures** with those exact names.
+
+**You do NOT need to touch the picture code again.** Just replace the files with your photos.
