@@ -35,6 +35,7 @@ section {
     justify-content: center;
     align-items: center;
     position: relative;
+    opacity: 1;
 }
 
 .container {
@@ -75,9 +76,134 @@ p {
 }
 
 
-/* =========================
+/* =====================================
+   PAGE TRANSITIONS
+===================================== */
+
+.page {
+    opacity: 0;
+    transform: translateY(35px);
+    pointer-events: none;
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.page.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =====================================
+   BUTTONS
+===================================== */
+
+.btn {
+    display: inline-block;
+    padding: 15px 28px;
+    border: 1px solid #793348;
+    color: #f5e8eb;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 10px;
+    transition: .35s ease;
+    background: #16090e;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn:hover {
+    background: #3a1421;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px #000;
+}
+
+.btn:active {
+    transform: scale(.96);
+}
+
+.next-btn {
+    margin-top: 50px;
+}
+
+
+/* =====================================
+   LOCK SCREEN
+===================================== */
+
+.lock-box {
+    margin: 45px auto 0;
+    max-width: 500px;
+    padding: 35px 25px;
+    background: rgba(20, 7, 13, .85);
+    border: 1px solid #401827;
+    box-shadow: 0 20px 70px #000;
+    transition: .5s ease;
+}
+
+.lock-icon {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.lock-question {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 27px;
+    color: #eadde0;
+    margin-bottom: 25px;
+}
+
+.answer-input {
+    width: 100%;
+    padding: 15px;
+    background: #080508;
+    border: 1px solid #522033;
+    color: #f5eeee;
+    outline: none;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+    transition: .3s ease;
+}
+
+.answer-input:focus {
+    border-color: #c8798d;
+    box-shadow: 0 0 20px rgba(200,121,141,.15);
+}
+
+.error {
+    color: #c8798d;
+    font-size: 11px;
+    margin-top: 12px;
+    min-height: 16px;
+}
+
+.lock-box.unlocked {
+    opacity: 0;
+    transform: translateY(-20px) scale(.95);
+    pointer-events: none;
+}
+
+
+/* =====================================
    INTRO
-========================= */
+===================================== */
 
 #intro {
     background:
@@ -87,8 +213,6 @@ p {
             #13080e 38%,
             #070507 75%
         );
-
-    text-align: center;
 }
 
 .intro-text {
@@ -104,27 +228,6 @@ p {
     max-width: 600px;
 }
 
-.btn {
-    display: inline-block;
-    padding: 15px 28px;
-    border: 1px solid #793348;
-    color: #f5e8eb;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 10px;
-    transition: .3s;
-    background: #16090e;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.btn:hover {
-    background: #3a1421;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 35px #000;
-}
-
 .scroll {
     margin-top: 55px;
     font-size: 9px;
@@ -133,9 +236,9 @@ p {
 }
 
 
-/* =========================
-   INTERACTIVE LETTER
-========================= */
+/* =====================================
+   LETTER
+===================================== */
 
 .letter {
     background:
@@ -200,7 +303,6 @@ p {
 }
 
 @keyframes heartbeat {
-
     0%, 100% {
         transform: scale(1);
     }
@@ -217,9 +319,6 @@ p {
     color: #eadde0;
     font-style: italic;
 }
-
-
-/* ENVELOPE FLAP */
 
 .envelope-flap {
     position: absolute;
@@ -248,11 +347,10 @@ p {
 }
 
 
-/* LETTER REVEAL */
+/* LETTER PAPER */
 
 .real-letter {
     display: none;
-    opacity: 0;
     max-width: 780px;
     margin: 20px auto 0;
 }
@@ -263,7 +361,6 @@ p {
 }
 
 @keyframes letterReveal {
-
     from {
         opacity: 0;
         transform: translateY(35px);
@@ -273,11 +370,7 @@ p {
         opacity: 1;
         transform: translateY(0);
     }
-
 }
-
-
-/* LETTER PAPER */
 
 .letter-paper {
     background: #f1e5e0;
@@ -321,14 +414,14 @@ p {
     font-size: 28px;
 }
 
-.more-love-btn {
-    margin-top: 35px;
+
+/* =====================================
+   APPRECIATION
+===================================== */
+
+.appreciation {
+    background: #090609;
 }
-
-
-/* =========================
-   CARDS
-========================= */
 
 .cards {
     display: grid;
@@ -341,7 +434,22 @@ p {
     padding: 32px 22px;
     background: #0d070b;
     border: 1px solid #34131e;
-    transition: .4s;
+    transition:
+        opacity .8s ease,
+        transform .8s ease,
+        border-color .4s ease;
+}
+
+.card.locked {
+    opacity: .25;
+    filter: blur(3px);
+    transform: scale(.96);
+}
+
+.card.unlocked {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
 }
 
 .card:hover {
@@ -365,10 +473,23 @@ p {
     font-size: 12px;
 }
 
+.appreciation-question {
+    max-width: 500px;
+    margin: 35px auto 0;
+}
 
-/* =========================
+.card-status {
+    margin-top: 15px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: .6;
+}
+
+
+/* =====================================
    MEMORIES
-========================= */
+===================================== */
 
 .memories {
     background: #090609;
@@ -403,12 +524,19 @@ p {
     font-size: 20px;
 
     text-align: center;
+
+    transition: .5s ease;
+}
+
+.photo:hover {
+    transform: scale(1.03);
+    border-color: #8c4058;
 }
 
 
-/* =========================
+/* =====================================
    SONG
-========================= */
+===================================== */
 
 .song {
     background:
@@ -467,7 +595,6 @@ p {
 }
 
 @keyframes spin {
-
     from {
         transform: rotate(0deg);
     }
@@ -475,13 +602,12 @@ p {
     to {
         transform: rotate(360deg);
     }
-
 }
 
 
-/* =========================
+/* =====================================
    FINAL
-========================= */
+===================================== */
 
 .final {
     background:
@@ -511,9 +637,9 @@ p {
 }
 
 
-/* =========================
+/* =====================================
    FLOATING HEARTS
-========================= */
+===================================== */
 
 .heart {
     position: fixed;
@@ -531,7 +657,6 @@ p {
 }
 
 @keyframes float {
-
     to {
         transform:
             translateY(-110vh)
@@ -539,13 +664,48 @@ p {
 
         opacity: 0;
     }
-
 }
 
 
-/* =========================
+/* =====================================
+   SCREEN TRANSITION
+===================================== */
+
+#transition {
+    position: fixed;
+    inset: 0;
+    background: #070507;
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .7s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#transition span {
+    color: #c8798d;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 45px;
+    opacity: 0;
+    transform: scale(.7);
+    transition: .6s ease;
+}
+
+#transition.active {
+    opacity: 1;
+}
+
+#transition.active span {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* =====================================
    MOBILE
-========================= */
+===================================== */
 
 @media(max-width:700px) {
 
@@ -603,6 +763,15 @@ p {
 
 }
 
+
+/* =====================================
+   HIDE ALL PAGES EXCEPT CURRENT
+===================================== */
+
+.page.hidden-page {
+    display: none;
+}
+
 </style>
 
 </head>
@@ -611,13 +780,20 @@ p {
 <body>
 
 
-<!-- =========================
-     DRAMATIC OPENING
-========================= -->
+<!-- TRANSITION SCREEN -->
 
-<section id="intro">
+<div id="transition">
+    <span>♡</span>
+</div>
 
-    <div class="container intro-text">
+
+<!-- =====================================
+     PAGE 1 — INTRO
+===================================== -->
+
+<section id="intro" class="page active">
+
+    <div class="container">
 
         <div class="eyebrow">
             this is not just a website
@@ -625,20 +801,61 @@ p {
 
         <h1>
             For
-            <span>Muhammad</span>
+            <span>Mohammad</span>
         </h1>
 
         <div class="intro-subtitle">
             "Before you scroll any further...
-            know that every word here was meant for you."
+            know that every word here is meant for you."
         </div>
 
-        <a href="#letter" class="btn">
-            Enter, Mera Bachha ♡
-        </a>
+        <div class="lock-box" id="introLock">
 
-        <div class="scroll">
-            scroll slowly ↓
+            <div class="lock-icon">
+                🔐
+            </div>
+
+            <div class="lock-question">
+                Who is this entire website for?
+            </div>
+
+            <input
+                type="text"
+                id="introAnswer"
+                class="answer-input"
+                placeholder="Type your answer..."
+            >
+
+            <button
+                class="btn"
+                onclick="unlockIntro()"
+            >
+                Unlock ♡
+            </button>
+
+            <div
+                class="error"
+                id="introError"
+            ></div>
+
+        </div>
+
+        <div
+            id="introNext"
+            class="reveal"
+        >
+
+            <div class="scroll">
+                You found the first secret ↓
+            </div>
+
+            <button
+                class="btn next-btn"
+                onclick="goToPage('letter')"
+            >
+                Continue to my letter ♡ →
+            </button>
+
         </div>
 
     </div>
@@ -646,11 +863,11 @@ p {
 </section>
 
 
-<!-- =========================
-     INTERACTIVE LETTER
-========================= -->
+<!-- =====================================
+     PAGE 2 — LETTER
+===================================== -->
 
-<section id="letter" class="letter">
+<section id="letter" class="page hidden-page">
 
     <div class="container">
 
@@ -667,231 +884,239 @@ p {
         </p>
 
 
-        <!-- ENVELOPE -->
-
         <div
-            class="envelope-wrapper"
-            id="envelopeWrapper"
+            class="lock-box"
+            id="letterLock"
         >
 
-            <div
-                class="envelope"
-                id="envelope"
-            >
-
-                <div class="envelope-flap"></div>
-
-                <div class="envelope-front">
-
-                    <div class="envelope-heart">
-                        ♡
-                    </div>
-
-                    <div class="envelope-text">
-                        for you
-                    </div>
-
-                </div>
-
+            <div class="lock-icon">
+                💌
             </div>
 
+            <div class="lock-question">
+                What do I call you when I'm being extra cute?
+            </div>
+
+            <input
+                type="text"
+                id="letterAnswer"
+                class="answer-input"
+                placeholder="Hint: starts with B..."
+            >
 
             <button
-                class="btn open-letter-btn"
-                onclick="openLetter()"
+                class="btn"
+                onclick="unlockLetter()"
             >
-                💌 Open this letter for you
+                Unlock my letter ♡
             </button>
+
+            <div
+                class="error"
+                id="letterError"
+            ></div>
 
         </div>
 
 
-        <!-- ACTUAL LETTER -->
-
         <div
-            class="real-letter"
-            id="realLetter"
+            id="letterContent"
+            class="reveal"
         >
 
-            <div class="letter-paper">
+            <div class="envelope-wrapper">
 
-                <div class="letter-top">
-                    ♡
+                <div
+                    class="envelope"
+                    id="envelope"
+                >
+
+                    <div class="envelope-flap"></div>
+
+                    <div class="envelope-front">
+
+                        <div class="envelope-heart">
+                            ♡
+                        </div>
+
+                        <div class="envelope-text">
+                            for you
+                        </div>
+
+                    </div>
+
                 </div>
 
-
-                <p>
-                    I don't think I say it enough, but thank you so much baby.
-                </p>
-
-
-                <p>
-                    Thank you for being there for me, especially during
-                    the moments when everything feels difficult.
-                    Somehow, you have this real power of making
-                    heaviness feel lighter.
-                </p>
-
-
-                <p>
-                    Thank you for choosing me. Thank you for being there
-                    with me even when I act like a whole stubborn baby.
-                    And thank you for still being here after so many
-                    fights, arguments, and all the unnecessary drama
-                    I somehow manage to create.
-                </p>
-
-
-                <p>
-                    You make me laugh even when I don't feel like smiling.
-                    You make me blush like hell. You literally turn me
-                    into a red tomato like crazy, dude.
-                    And somehow, you still find that cute.
-                </p>
-
-
-                <p>
-                    Then you listen to me.
-                </p>
-
-
-                <p>
-                    You listen to all my rants. You listen to things
-                    you don't even relate to. You listen when I have
-                    absolutely nothing sensible to say, and somehow
-                    you still stay and hear me out.
-                </p>
-
-
-                <p>
-                    And then you pamper me.
-                </p>
-
-
-                <p>
-                    Even after all those unnecessary "sorrys" that
-                    I pretend I'm tired of — okay, maybe I am a little
-                    tired of them I still love you a lot.
-                </p>
-
-
-                <p>
-                    And yes, I notice all of it.
-                </p>
-
-
-                <p>
-                    I notice the little things. I notice how much you care.
-                    I notice how you try to make me happy, how you try
-                    to protect me, how you worry about me, and how you
-                    keep trying even when I make things unnecessarily
-                    difficult.
-                </p>
-
-
-                <p>
-                    I know I sometimes fight over stupid things.
-                    I know I can be stubborn for absolutely no reason.
-                    But thank you for being patient with me anyway.
-                </p>
-
-
-                <p>
-                    I don't think you realise how much those little
-                    things mean to me.
-                </p>
-
-
-                <p>
-                    More than big gifts. More than anything expensive.
-                    I don't need those things.
-                </p>
-
-
-                <p>
-                    It's the little things that stay with me.
-                </p>
-
-
-                <p>
-                    The way you listen. The way you care. The way you try.
-                    The way you make me laugh when I don't want to.
-                    The way you somehow manage to make even an ordinary
-                    day feel a little better just by being there.
-                </p>
-
-
-                <p>
-                    I'm genuinely grateful that you're in my life.
-                </p>
-
-
-                <p>
-                    I'm grateful for the random laughter, the difficult days,
-                    the good days, the stupid conversations, the unnecessary
-                    fights, the apologies, the teasing, the little moments,
-                    and everything in between.
-                </p>
-
-
-                <p>
-                    I'm grateful for you.
-                </p>
-
-
-                <p>
-                    And honestly, you are one of the best things that has
-                    ever happened to me.
-                </p>
-
-
-                <p>
-                    So thank you love.
-                </p>
-
-
-                <p>
-                    For choosing me.<br>
-                    For staying.<br>
-                    For caring.<br>
-                    For listening.<br>
-                    For making me laugh.<br>
-                    For making me blush like an idiot.<br>
-                    For pampering me.<br>
-                    For putting up with my stubbornness.<br>
-                    And most importantly, for being you.
-                </p>
-
-
-                <p>
-                    I hope you always know that I notice.
-                </p>
-
-
-                <p>
-                    I hope you always know that I appreciate you.
-                </p>
-
-
-                <p>
-                    And I hope you always know that you mean so much more
-                    to me than I probably know how to say.
-                </p>
-
-
-                <div class="signature">
-                    — your baby ♡
-                </div>
+                <button
+                    class="btn"
+                    onclick="openLetter()"
+                >
+                    💌 Open this letter
+                </button>
 
             </div>
 
 
-            <a
-                href="#more-love"
-                class="btn more-love-btn"
+            <div
+                class="real-letter"
+                id="realLetter"
             >
-                More love for you ♡ →
-            </a>
+
+                <div class="letter-paper">
+
+                    <div class="letter-top">
+                        ♡
+                    </div>
+
+                    <p>
+                        I don't think I say it enough, but thank you so much baby.
+                    </p>
+
+                    <p>
+                        Thank you for being there for me, especially during
+                        the moments when everything feels difficult.
+                        Somehow, you have this real power of making
+                        heaviness feel lighter.
+                    </p>
+
+                    <p>
+                        Thank you for choosing me. Thank you for being there
+                        with me even when I act like a whole stubborn baby.
+                        And thank you for still being here after so many
+                        fights, arguments, and all the unnecessary drama
+                        I somehow manage to create.
+                    </p>
+
+                    <p>
+                        You make me laugh even when I don't feel like smiling.
+                        You make me blush like hell. You literally turn me
+                        into a red tomato like crazy, dude.
+                        And somehow, you still find that cute.
+                    </p>
+
+                    <p>
+                        Then you listen to me.
+                    </p>
+
+                    <p>
+                        You listen to all my rants. You listen to things
+                        you don't even relate to. You listen when I have
+                        absolutely nothing sensible to say, and somehow
+                        you still stay and hear me out.
+                    </p>
+
+                    <p>
+                        And then you pamper me.
+                    </p>
+
+                    <p>
+                        Even after all those unnecessary "sorrys" that
+                        I pretend I'm tired of — okay, maybe I am a little
+                        tired of them — I still love you a lot.
+                    </p>
+
+                    <p>
+                        And yes, I notice all of it.
+                    </p>
+
+                    <p>
+                        I notice the little things. I notice how much you care.
+                        I notice how you try to make me happy, how you try
+                        to protect me, how you worry about me, and how you
+                        keep trying even when I make things unnecessarily
+                        difficult.
+                    </p>
+
+                    <p>
+                        I know I sometimes fight over stupid things.
+                        I know I can be stubborn for absolutely no reason.
+                        But thank you for being patient with me anyway.
+                    </p>
+
+                    <p>
+                        I don't think you realise how much those little
+                        things mean to me.
+                    </p>
+
+                    <p>
+                        More than big gifts. More than anything expensive.
+                        I don't need those things.
+                    </p>
+
+                    <p>
+                        It's the little things that stay with me.
+                    </p>
+
+                    <p>
+                        The way you listen. The way you care. The way you try.
+                        The way you make me laugh when I don't want to.
+                        The way you somehow manage to make even an ordinary
+                        day feel a little better just by being there.
+                    </p>
+
+                    <p>
+                        I'm genuinely grateful that you're in my life.
+                    </p>
+
+                    <p>
+                        I'm grateful for the random laughter, the difficult days,
+                        the good days, the stupid conversations, the unnecessary
+                        fights, the apologies, the teasing, the little moments,
+                        and everything in between.
+                    </p>
+
+                    <p>
+                        I'm grateful for you.
+                    </p>
+
+                    <p>
+                        And honestly, you are one of the best things that has
+                        ever happened to me.
+                    </p>
+
+                    <p>
+                        So thank you love.
+                    </p>
+
+                    <p>
+                        For choosing me.<br>
+                        For staying.<br>
+                        For caring.<br>
+                        For listening.<br>
+                        For making me laugh.<br>
+                        For making me blush like an idiot.<br>
+                        For pampering me.<br>
+                        For putting up with my stubbornness.<br>
+                        And most importantly, for being you.
+                    </p>
+
+                    <p>
+                        I hope you always know that I notice.
+                    </p>
+
+                    <p>
+                        I hope you always know that I appreciate you.
+                    </p>
+
+                    <p>
+                        And I hope you always know that you mean so much more
+                        to me than I probably know how to say.
+                    </p>
+
+                    <div class="signature">
+                        — your baby ♡
+                    </div>
+
+                </div>
+
+                <button
+                    class="btn next-btn"
+                    onclick="goToPage('more-love')"
+                >
+                    More love for you ♡ →
+                </button>
+
+            </div>
 
         </div>
 
@@ -900,11 +1125,11 @@ p {
 </section>
 
 
-<!-- =========================
-     APPRECIATION
-========================= -->
+<!-- =====================================
+     PAGE 3 — APPRECIATION
+===================================== -->
 
-<section id="more-love">
+<section id="more-love" class="page hidden-page appreciation">
 
     <div class="container">
 
@@ -913,14 +1138,63 @@ p {
         </div>
 
         <h2>
-            You make life softer.
+            You make life prettier.
         </h2>
+
+        <p style="margin-top:20px;">
+            Six little things about you are waiting to be unlocked.
+        </p>
+
+
+        <div
+            class="lock-box appreciation-question"
+            id="appreciationLock"
+        >
+
+            <div class="lock-icon">
+                🔐
+            </div>
+
+            <div
+                class="lock-question"
+                id="appreciationQuestion"
+            >
+                What do I call you?
+            </div>
+
+            <input
+                type="text"
+                id="appreciationAnswer"
+                class="answer-input"
+                placeholder="Your answer..."
+            >
+
+            <button
+                class="btn"
+                onclick="unlockAppreciation()"
+            >
+                Unlock ♡
+            </button>
+
+            <div
+                class="error"
+                id="appreciationError"
+            ></div>
+
+            <div
+                class="card-status"
+                id="cardStatus"
+            >
+                0 / 6 unlocked
+            </div>
+
+        </div>
 
 
         <div class="cards">
 
 
-            <div class="card">
+            <div class="card locked" id="card1">
 
                 <div class="card-icon">
                     ☾
@@ -932,14 +1206,14 @@ p {
 
                 <p>
                     When things get difficult,
-                    having you there somehow makes
-                    everything feel a little easier.
+                    and you still don't leave my side,
+                    I fall in love even more.
                 </p>
 
             </div>
 
 
-            <div class="card">
+            <div class="card locked" id="card2">
 
                 <div class="card-icon">
                     ♡
@@ -953,12 +1227,13 @@ p {
                     You notice things, you check on me,
                     and you make me feel cared for
                     in ways you probably don't even realise.
+                    And somehow, you still make me sleep early every day.
                 </p>
 
             </div>
 
 
-            <div class="card">
+            <div class="card locked" id="card3">
 
                 <div class="card-icon">
                     ✦
@@ -977,7 +1252,7 @@ p {
             </div>
 
 
-            <div class="card">
+            <div class="card locked" id="card4">
 
                 <div class="card-icon">
                     𓆩♡𓆪
@@ -990,13 +1265,13 @@ p {
                 <p>
                     And yes, I absolutely notice.
                     Your cutie behaviour has officially
-                    been documented.
+                    been documented in my life.
                 </p>
 
             </div>
 
 
-            <div class="card">
+            <div class="card locked" id="card5">
 
                 <div class="card-icon">
                     ∞
@@ -1015,7 +1290,7 @@ p {
             </div>
 
 
-            <div class="card">
+            <div class="card locked" id="card6">
 
                 <div class="card-icon">
                     🖤
@@ -1036,16 +1311,31 @@ p {
 
         </div>
 
+
+        <div
+            id="appreciationNext"
+            class="reveal"
+        >
+
+            <button
+                class="btn next-btn"
+                onclick="goToPage('memories')"
+            >
+                Unlock our memories ♡ →
+            </button>
+
+        </div>
+
     </div>
 
 </section>
 
 
-<!-- =========================
-     MEMORIES
-========================= -->
+<!-- =====================================
+     PAGE 4 — MEMORIES
+===================================== -->
 
-<section class="memories">
+<section id="memories" class="page hidden-page memories">
 
     <div class="container">
 
@@ -1054,58 +1344,101 @@ p {
         </div>
 
         <h2>
-            Our memories.
+            Someone I am obsessed with.
         </h2>
 
-        <p style="margin-top:20px;">
-            One day this section will be full of our favourite pictures.
-        </p>
+        <div
+            class="lock-box"
+            id="memoriesLock"
+        >
 
-
-        <div class="photos">
-
-
-            <div class="photo">
+            <div class="lock-icon">
                 📸
-                <br>
-                YOUR PHOTO
+            </div>
+
+            <div class="lock-question">
+                What am I always asking you for?
+            </div>
+
+            <input
+                type="text"
+                id="memoriesAnswer"
+                class="answer-input"
+                placeholder="Hint: starts with P..."
+            >
+
+            <button
+                class="btn"
+                onclick="unlockMemories()"
+            >
+                Reveal our memories ♡
+            </button>
+
+            <div
+                class="error"
+                id="memoriesError"
+            ></div>
+
+        </div>
+
+
+        <div
+            id="memoriesContent"
+            class="reveal"
+        >
+
+            <p style="margin-top:20px;">
+                One day this section will be full of our favourite pictures.
+            </p>
+
+
+            <div class="photos">
+
+                <div class="photo">
+                    📸
+                    <br>
+                    CHOTU
+                </div>
+
+                <div class="photo">
+                    ♡
+                    <br>
+                    BETUU
+                </div>
+
+                <div class="photo">
+                    📸
+                    <br>
+                    MERA BACCHA
+                </div>
+
+                <div class="photo">
+                    🖤
+                    <br>
+                    MERI JAAN
+                </div>
+
+                <div class="photo">
+                    ♡
+                    <br>
+                    PRINCESS
+                </div>
+
+                <div class="photo">
+                    ✦
+                    <br>
+                    NERD
+                </div>
+
             </div>
 
 
-            <div class="photo">
-                ♡
-                <br>
-                OUR MEMORY
-            </div>
-
-
-            <div class="photo">
-                📸
-                <br>
-                YOUR PHOTO
-            </div>
-
-
-            <div class="photo">
-                🖤
-                <br>
-                THAT MOMENT
-            </div>
-
-
-            <div class="photo">
-                ♡
-                <br>
-                ANOTHER MEMORY
-            </div>
-
-
-            <div class="photo">
-                ✦
-                <br>
-                JUST US
-            </div>
-
+            <button
+                class="btn next-btn"
+                onclick="goToPage('song')"
+            >
+                One more thing ♡ →
+            </button>
 
         </div>
 
@@ -1114,11 +1447,11 @@ p {
 </section>
 
 
-<!-- =========================
-     SONG
-========================= -->
+<!-- =====================================
+     PAGE 5 — SONG
+===================================== -->
 
-<section class="song">
+<section id="song" class="page hidden-page song">
 
     <div class="container">
 
@@ -1131,47 +1464,96 @@ p {
         </h2>
 
 
-        <div class="vinyl"></div>
-
-
-        <p
-            style="
-                font-family:'Cormorant Garamond';
-                font-size:30px;
-                color:#e7cbd1;
-            "
+        <div
+            class="lock-box"
+            id="songLock"
         >
-            Samjhawan
-        </p>
+
+            <div class="lock-icon">
+                🎵
+            </div>
+
+            <div class="lock-question">
+                What song reminds me of us?
+            </div>
+
+            <input
+                type="text"
+                id="songAnswer"
+                class="answer-input"
+                placeholder="Type the song..."
+            >
+
+            <button
+                class="btn"
+                onclick="unlockSong()"
+            >
+                Unlock our song ♡
+            </button>
+
+            <div
+                class="error"
+                id="songError"
+            ></div>
+
+        </div>
 
 
-        <p>
-            Arijit Singh & Shreya Ghoshal
-        </p>
-
-
-        <br>
-
-
-        <a
-            class="btn"
-            href="https://www.youtube.com/results?search_query=Samjhawan+Arijit+Singh+Shreya+Ghoshal"
-            target="_blank"
-            rel="noopener noreferrer"
+        <div
+            id="songContent"
+            class="reveal"
         >
-            ♡ Play our song
-        </a>
+
+            <div class="vinyl"></div>
+
+            <p
+                style="
+                    font-family:'Cormorant Garamond';
+                    font-size:30px;
+                    color:#e7cbd1;
+                "
+            >
+                Samjhawan
+            </p>
+
+            <p>
+                Arijit Singh & Shreya Ghoshal
+            </p>
+
+            <br>
+
+            <a
+                class="btn"
+                href="https://www.youtube.com/results?search_query=Samjhawan+Arijit+Singh+Shreya+Ghoshal"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                ♡ Play our song
+            </a>
+
+
+            <br>
+
+
+            <button
+                class="btn next-btn"
+                onclick="goToPage('final')"
+            >
+                Finally... ♡ →
+            </button>
+
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- =========================
-     FINAL
-========================= -->
+<!-- =====================================
+     PAGE 6 — FINAL
+===================================== -->
 
-<section class="final">
+<section id="final" class="page hidden-page final">
 
     <div class="container">
 
@@ -1179,54 +1561,97 @@ p {
             and finally...
         </div>
 
-        <h2>
-            Stay, okay?
-        </h2>
 
+        <div
+            class="lock-box"
+            id="finalLock"
+        >
 
-        <div class="final-message">
+            <div class="lock-icon">
+                ♡
+            </div>
 
-            I don't know what every tomorrow
-            is going to look like.
+            <div class="lock-question">
+                Last question... who is my favourite cutie?
+            </div>
 
-            <br><br>
+            <input
+                type="text"
+                id="finalAnswer"
+                class="answer-input"
+                placeholder="You know this one..."
+            >
 
-            But I know I want you somewhere in it.
+            <button
+                class="btn"
+                onclick="unlockFinal()"
+            >
+                Reveal the last page ♡
+            </button>
 
-            <br><br>
-
-            Thank you for being my little piece of happiness.
-            For making me laugh.
-            For making me smile.
-            For caring so much.
-            For pampering me.
-            And for being my favourite cutie.
-
-            <br><br>
-
-            If you ever wonder whether you matter to me...
-
-            <br>
-
-            Come back here.
-
-            <br><br>
-
-            I'll still mean every word.
+            <div
+                class="error"
+                id="finalError"
+            ></div>
 
         </div>
 
 
-        <div class="signature">
-            your girl ♡
-        </div>
+        <div
+            id="finalContent"
+            class="reveal"
+        >
+
+            <h2>
+                Stay, okay?
+            </h2>
+
+            <div class="final-message">
+
+                I don't know what every tomorrow
+                is going to look like.
+
+                <br><br>
+
+                But I know I want you in it.
+                May Allah make you my naseeb.
+
+                <br><br>
+
+                Thank you for being my little piece of happiness.
+                For making me laugh.
+                For making me smile.
+                For caring so much.
+                For pampering me.
+                And for being my favourite cutie.
+
+                <br><br>
+
+                If you ever wonder whether you matter to me...
+
+                <br>
+
+                Come back here.
+
+                <br><br>
+
+                I'll still mean every word.
+
+            </div>
 
 
-        <br><br>
+            <div class="signature">
+                your baccha ♡
+            </div>
 
 
-        <div class="eyebrow">
-            made especially for Muhammad • Mera Bachha
+            <br><br>
+
+
+            <div class="eyebrow">
+                made especially for Mohammad • My Pookie
+            </div>
+
         </div>
 
     </div>
@@ -1234,19 +1659,152 @@ p {
 </section>
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
 
 
-/* OPEN LETTER */
+/* =====================================
+   PAGE NAVIGATION
+===================================== */
+
+function goToPage(pageId) {
+
+    const transition =
+        document.getElementById("transition");
+
+    const currentPage =
+        document.querySelector(".page.active");
+
+    const nextPage =
+        document.getElementById(pageId);
+
+    transition.classList.add("active");
+
+    setTimeout(() => {
+
+        if (currentPage) {
+            currentPage.classList.remove("active");
+            currentPage.classList.add("hidden-page");
+        }
+
+        nextPage.classList.remove("hidden-page");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
+
+        setTimeout(() => {
+
+            nextPage.classList.add("active");
+
+            transition.classList.remove("active");
+
+        }, 100);
+
+    }, 650);
+}
+
+
+/* =====================================
+   ANSWER CHECKER
+===================================== */
+
+function checkAnswer(inputId, answers) {
+
+    const value =
+        document
+        .getElementById(inputId)
+        .value
+        .trim()
+        .toLowerCase();
+
+    return answers.some(answer =>
+        value === answer.toLowerCase()
+    );
+}
+
+
+/* =====================================
+   INTRO UNLOCK
+===================================== */
+
+function unlockIntro() {
+
+    if (
+        checkAnswer(
+            "introAnswer",
+            ["mohammad", "mohammed", "my pookie", "pookie", "mera baccha", "betuuu"]
+        )
+    ) {
+
+        document
+            .getElementById("introLock")
+            .classList.add("unlocked");
+
+        setTimeout(() => {
+
+            document
+                .getElementById("introNext")
+                .classList.add("visible");
+
+        }, 500);
+
+    } else {
+
+        document
+            .getElementById("introError")
+            .textContent =
+            "Hmm... you should know this one 😭 Try again.";
+
+    }
+}
+
+
+/* =====================================
+   LETTER UNLOCK
+===================================== */
+
+function unlockLetter() {
+
+    if (
+        checkAnswer(
+            "letterAnswer",
+            ["betuuu", "betu", "betuu", "betuuu ♡", "mera baccha", "baccha"]
+        )
+    ) {
+
+        document
+            .getElementById("letterLock")
+            .classList.add("unlocked");
+
+        setTimeout(() => {
+
+            document
+                .getElementById("letterContent")
+                .classList.add("visible");
+
+        }, 500);
+
+    } else {
+
+        document
+            .getElementById("letterError")
+            .textContent =
+            "Wrong answer, pookie. You know what I call you 😭";
+
+    }
+}
+
+
+/* =====================================
+   OPEN LETTER
+===================================== */
 
 function openLetter() {
 
     const wrapper =
-        document.getElementById("envelopeWrapper");
+        document.getElementById("letterContent")
+        .querySelector(".envelope-wrapper");
 
     const letter =
         document.getElementById("realLetter");
@@ -1271,7 +1829,255 @@ function openLetter() {
 }
 
 
-/* FLOATING HEARTS */
+/* =====================================
+   APPRECIATION
+===================================== */
+
+let currentCard = 0;
+
+const appreciationAnswers = [
+    ["mera baccha", "baccha", "betuuu", "betu"],
+    ["me", "you", "mohammad"],
+    ["you", "mohammad", "betuuu"],
+    ["you", "mohammad", "betuuu"],
+    ["you", "mohammad", "betuuu"],
+    ["you", "mohammad", "betuuu"]
+];
+
+const appreciationQuestions = [
+
+    "What do I call you?",
+    "Who makes me feel cared for?",
+    "Who makes me laugh like an idiot?",
+    "Who pampers me?",
+    "Who means so much to me?",
+    "Who do I want exactly as they are?"
+];
+
+
+function unlockAppreciation() {
+
+    const input =
+        document.getElementById("appreciationAnswer");
+
+    const error =
+        document.getElementById("appreciationError");
+
+    if (
+        currentCard < 6 &&
+        checkAnswer(
+            "appreciationAnswer",
+            appreciationAnswers[currentCard]
+        )
+    ) {
+
+        currentCard++;
+
+        document
+            .getElementById("card" + currentCard)
+            .classList.remove("locked");
+
+        document
+            .getElementById("card" + currentCard)
+            .classList.add("unlocked");
+
+        document
+            .getElementById("cardStatus")
+            .textContent =
+            currentCard + " / 6 unlocked";
+
+        input.value = "";
+        error.textContent = "";
+
+        if (currentCard < 6) {
+
+            document
+                .getElementById("appreciationQuestion")
+                .textContent =
+                appreciationQuestions[currentCard];
+
+        } else {
+
+            document
+                .getElementById("appreciationQuestion")
+                .textContent =
+                "You unlocked everything. ♡";
+
+            input.style.display = "none";
+
+            document
+                .querySelector("#appreciationLock .btn")
+                .style.display = "none";
+
+            setTimeout(() => {
+
+                document
+                    .getElementById("appreciationNext")
+                    .classList.add("visible");
+
+            }, 700);
+        }
+
+    } else {
+
+        error.textContent =
+            "Nope 😭 Think about who this whole website is about.";
+
+    }
+}
+
+
+/* =====================================
+   MEMORIES
+===================================== */
+
+function unlockMemories() {
+
+    if (
+        checkAnswer(
+            "memoriesAnswer",
+            ["pictures", "photos", "pics", "pictures of you", "photos of you"]
+        )
+    ) {
+
+        document
+            .getElementById("memoriesLock")
+            .classList.add("unlocked");
+
+        setTimeout(() => {
+
+            document
+                .getElementById("memoriesContent")
+                .classList.add("visible");
+
+        }, 500);
+
+    } else {
+
+        document
+            .getElementById("memoriesError")
+            .textContent =
+            "Come onnn 😭 You know what I always ask for.";
+
+    }
+}
+
+
+/* =====================================
+   SONG
+===================================== */
+
+function unlockSong() {
+
+    if (
+        checkAnswer(
+            "songAnswer",
+            ["samjhawan", "samjhawan arijit singh", "samjhawan shreya ghoshal"]
+        )
+    ) {
+
+        document
+            .getElementById("songLock")
+            .classList.add("unlocked");
+
+        setTimeout(() => {
+
+            document
+                .getElementById("songContent")
+                .classList.add("visible");
+
+        }, 500);
+
+    } else {
+
+        document
+            .getElementById("songError")
+            .textContent =
+            "Excuse me??? Our song 😭 Try again.";
+
+    }
+}
+
+
+/* =====================================
+   FINAL
+===================================== */
+
+function unlockFinal() {
+
+    if (
+        checkAnswer(
+            "finalAnswer",
+            ["mohammad", "my pookie", "pookie", "mera baccha", "betuuu", "betu"]
+        )
+    ) {
+
+        document
+            .getElementById("finalLock")
+            .classList.add("unlocked");
+
+        setTimeout(() => {
+
+            document
+                .getElementById("finalContent")
+                .classList.add("visible");
+
+        }, 500);
+
+    } else {
+
+        document
+            .getElementById("finalError")
+            .textContent =
+            "Really? After all of this? 😭";
+
+    }
+}
+
+
+/* =====================================
+   ENTER KEY SUPPORT
+===================================== */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key !== "Enter") return;
+
+    const active =
+        document.querySelector(".page.active");
+
+    if (!active) return;
+
+    if (active.id === "intro") {
+        unlockIntro();
+    }
+
+    else if (active.id === "letter") {
+        unlockLetter();
+    }
+
+    else if (active.id === "more-love") {
+        unlockAppreciation();
+    }
+
+    else if (active.id === "memories") {
+        unlockMemories();
+    }
+
+    else if (active.id === "song") {
+        unlockSong();
+    }
+
+    else if (active.id === "final") {
+        unlockFinal();
+    }
+
+});
+
+
+/* =====================================
+   FLOATING HEARTS
+===================================== */
 
 function createHeart() {
 
@@ -1297,13 +2103,10 @@ function createHeart() {
     document.body.appendChild(heart);
 
     setTimeout(() => {
-
         heart.remove();
-
     }, 10000);
 
 }
-
 
 setInterval(createHeart, 900);
 
