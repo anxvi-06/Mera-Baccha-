@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Bachha ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #070507;
+    color: #f5eeee;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+section {
+    min-height: 100vh;
+    padding: 90px 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.container {
+    width: min(1000px, 100%);
+    text-align: center;
+}
+
+h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: clamp(65px, 12vw, 140px);
+    line-height: .8;
+}
+
+h1 span {
+    display: block;
+    color: #c8798d;
+}
+
+h2 {
+    font-size: clamp(45px, 8vw, 80px);
+}
+
+p {
+    color: #d8ced1;
+    line-height: 1.9;
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    opacity: .6;
+    margin-bottom: 25px;
+}
+
+/* INTRO */
+
+#intro {
+    background:
+        radial-gradient(circle at center, #35121d 0%, #13080e 38%, #070507 75%);
+    text-align: center;
+}
+
+.intro-text {
+    position: relative;
+    z-index: 2;
+}
+
+.intro-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 23px;
+    font-style: italic;
+    margin: 35px auto;
+    max-width: 600px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 28px;
+    border: 1px solid #793348;
+    color: #f5e8eb;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 10px;
+    transition: .3s;
+    background: #16090e;
+}
+
+.btn:hover {
+    background: #3a1421;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px #000;
+}
+
+.scroll {
+    margin-top: 55px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    opacity: .5;
+}
+
+/* LETTER */
+
+.letter {
+    background: linear-gradient(#090609, #12070c);
+}
+
+.letter-card {
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 55px 45px;
+    border: 1px solid #3c1724;
+    background: #0d070b;
+    box-shadow: 0 25px 80px #000;
+    text-align: left;
+}
+
+.letter-card p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    line-height: 1.7;
+}
+
+.signature {
+    margin-top: 30px;
+    text-align: right;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: #c8798d;
+}
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+    margin-top: 50px;
+}
+
+.card {
+    padding: 32px 22px;
+    background: #0d070b;
+    border: 1px solid #34131e;
+    transition: .4s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #773047;
+    box-shadow: 0 20px 45px #000;
+}
+
+.card-icon {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #df9aaa;
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    font-size: 12px;
+}
+
+/* MEMORIES */
+
+.memories {
+    background: #090609;
+}
+
+.photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 45px;
+}
+
+.photo {
+    aspect-ratio: 4 / 5;
+    background: linear-gradient(145deg, #1c0b11, #080609);
+    border: 1px solid #3a1723;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a9858e;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+}
+
+/* SONG */
+
+.song {
+    background:
+        radial-gradient(circle at center, #2b0d18, #080509 65%);
+}
+
+.vinyl {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    margin: 40px auto;
+    background:
+        repeating-radial-gradient(
+            circle,
+            #050505 0px,
+            #050505 4px,
+            #151515 5px,
+            #151515 6px
+        );
+    border: 7px solid #111;
+    box-shadow: 0 0 60px #5b1d32;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: spin 10s linear infinite;
+}
+
+.vinyl::after {
+    content: "♡";
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #511b2c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* FINAL */
+
+.final {
+    background:
+        radial-gradient(circle at center, #36121e, #090609 65%);
+}
+
+.final-message {
+    max-width: 700px;
+    margin: 35px auto;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    line-height: 1.7;
+    color: #eadde0;
+}
+
+/* HEARTS */
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    color: #b04c67;
+    font-size: 18px;
+    pointer-events: none;
+    animation: float 7s linear forwards;
+    z-index: 10;
+}
+
+@keyframes float {
+    to {
+        transform: translateY(-110vh) rotate(25deg);
+        opacity: 0;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+    .cards,
+    .photos {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .letter-card {
+        padding: 35px 25px;
+    }
+
+    .letter-card p {
+        font-size: 18px;
+    }
+}
+
+@media(max-width:450px) {
+
+    .cards,
+    .photos {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- DRAMATIC OPENING -->
+
+<section id="intro">
+
+    <div class="container intro-text">
+
+        <div class="eyebrow">
+            this is not just a website
+        </div>
+
+        <h1>
+            For
+            <span>Muhammad</span>
+        </h1>
+
+        <div class="intro-subtitle">
+            "Before you scroll any further...
+            know that every word here was meant for you."
+        </div>
+
+        <a href="#letter" class="btn">
+            Enter, Mera Bachha ♡
+        </a>
+
+        <div class="scroll">
+            scroll slowly ↓
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LETTER -->
+
+<section id="letter" class="letter">
+
+    <div class="container">
+
+        <div class="eyebrow">
+            if my heart could write
+        </div>
+
+        <h2>
+            Dear Mera Bachha,
+        </h2>
+
+        <div class="letter-card">
+
+            <p>
+
+                I don't think I say it enough, but thank you.
+
+                <br><br>
+
+                Thank you for being there for me, especially during
+                the moments when everything feels difficult.
+                Somehow, you have this ridiculous little superpower
+                of making heavy days feel lighter.
+
+                <br><br>
+
+                You make me laugh when I don't even feel like smiling.
+                You make ordinary moments feel special.
+                You listen to me, you care about me,
+                you pamper me, and somehow you still manage
+                to be my absolute cutie afterwards.
+
+                <br><br>
+
+                And yes, I notice all of it.
+
+                <br><br>
+
+                I notice the little things.
+                I notice how much you care.
+                I notice how scared you are of losing me.
+                I notice every time you try to make me happy.
+
+                <br><br>
+
+                I don't think you realise how much those things mean to me.
+
+                <br><br>
+
+                I am genuinely grateful that you are in my life.
+                I want you around for the stupid conversations,
+                the random laughter, the difficult days,
+                the good days, and all the completely ordinary
+                moments in between.
+
+                <br><br>
+
+                Because somehow, when you're there,
+                difficult things don't feel quite as difficult.
+
+                <br><br>
+
+                So this is my unnecessarily dramatic way of saying:
+
+                <br><br>
+
+                <strong>
+                Thank you for being you.
+                Thank you for choosing to care.
+                And thank you for being my Mera Bachha.
+                </strong>
+
+            </p>
+
+            <div class="signature">
+                — from your girl ♡
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- APPRECIATION -->
+
+<section>
+
+    <div class="container">
+
+        <div class="eyebrow">
+            evidence that you are, in fact, special
+        </div>
+
+        <h2>
+            You make life softer.
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">☾</div>
+                <h3>You stay.</h3>
+                <p>
+                    When things get difficult,
+                    having you there somehow makes
+                    everything feel a little easier.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">♡</div>
+                <h3>You care.</h3>
+                <p>
+                    You notice things, you check on me,
+                    and you make me feel cared for
+                    in ways you probably don't even realise.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">✦</div>
+                <h3>You make me laugh.</h3>
+                <p>
+                    You can turn the most random moment
+                    into something that leaves me smiling
+                    like an idiot.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">𓆩♡𓆪</div>
+                <h3>You pamper me.</h3>
+                <p>
+                    And yes, I absolutely notice.
+                    Your cutie behaviour has officially
+                    been documented.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">∞</div>
+                <h3>You matter.</h3>
+                <p>
+                    More than a paragraph can explain.
+                    Your presence genuinely makes
+                    a difference to my days.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🖤</div>
+                <h3>You are you.</h3>
+                <p>
+                    And honestly, that's my favourite thing.
+                    I don't need you to be perfect.
+                    I just want you to be you.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PHOTOS -->
+
+<section class="memories">
+
+    <div class="container">
+
+        <div class="eyebrow">
+            little pieces of us
+        </div>
+
+        <h2>
+            Our memories.
+        </h2>
+
+        <p style="margin-top:20px;">
+            One day this section will be full of our favourite pictures.
+        </p>
+
+        <div class="photos">
+
+            <div class="photo">
+                📸<br>
+                YOUR PHOTO
+            </div>
+
+            <div class="photo">
+                ♡<br>
+                OUR MEMORY
+            </div>
+
+            <div class="photo">
+                📸<br>
+                YOUR PHOTO
+            </div>
+
+            <div class="photo">
+                🖤<br>
+                THAT MOMENT
+            </div>
+
+            <div class="photo">
+                ♡<br>
+                ANOTHER MEMORY
+            </div>
+
+            <div class="photo">
+                ✦<br>
+                JUST US
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SONG -->
+
+<section class="song">
+
+    <div class="container">
+
+        <div class="eyebrow">
+            press play when you miss me
+        </div>
+
+        <h2>
+            Our song.
+        </h2>
+
+        <div class="vinyl"></div>
+
+        <p style="
+            font-family:'Cormorant Garamond';
+            font-size:30px;
+            color:#e7cbd1;
+        ">
+            Samjhawan
+        </p>
+
+        <p>
+            Arijit Singh & Shreya Ghoshal
+        </p>
+
+        <br>
+
+        <a
+            class="btn"
+            href="https://www.youtube.com/results?search_query=Samjhawan+Arijit+Singh+Shreya+Ghoshal"
+            target="_blank"
+        >
+            ♡ Play our song
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section class="final">
+
+    <div class="container">
+
+        <div class="eyebrow">
+            and finally...
+        </div>
+
+        <h2>
+            Stay, okay?
+        </h2>
+
+        <div class="final-message">
+
+            I don't know what every tomorrow
+            is going to look like.
+
+            <br><br>
+
+            But I know I want you somewhere in it.
+
+            <br><br>
+
+            Thank you for being my little piece of happiness.
+            For making me laugh.
+            For making me smile.
+            For caring so much.
+            For pampering me.
+            And for being my favourite cutie.
+
+            <br><br>
+
+            If you ever wonder whether you matter to me...
+
+            <br>
+
+            Come back here.
+
+            <br><br>
+
+            I'll still mean every word.
+
+        </div>
+
+        <div class="signature">
+            your girl ♡
+        </div>
+
+        <br><br>
+
+        <div class="eyebrow">
+            made especially for Muhammad • Mera Bachha
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* FLOATING HEARTS */
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML =
+        ["♡", "♥", "✦", "⋆"][Math.floor(Math.random() * 4)];
+
+    heart.style.left =
+        Math.random() * 100 + "%";
+
+    heart.style.fontSize =
+        (12 + Math.random() * 18) + "px";
+
+    heart.style.animationDuration =
+        (5 + Math.random() * 5) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 10000);
+}
+
+setInterval(createHeart, 900);
+
+</script>
+
+</body>
+</html>
