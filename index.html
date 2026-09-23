@@ -35,7 +35,6 @@ section {
     justify-content: center;
     align-items: center;
     position: relative;
-    opacity: 1;
 }
 
 .container {
@@ -77,60 +76,111 @@ p {
 
 
 /* =====================================
-   PAGE TRANSITIONS
+   PAGE SYSTEM
 ===================================== */
 
 .page {
+    display: none;
     opacity: 0;
     transform: translateY(35px);
-    pointer-events: none;
-    transition:
-        opacity 1s ease,
-        transform 1s ease;
 }
 
 .page.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+    display: flex;
+    animation: pageIn 1s ease forwards;
 }
 
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition:
-        opacity 1s ease,
-        transform 1s ease;
-}
+@keyframes pageIn {
 
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
 }
 
 
 /* =====================================
-   BUTTONS
+   PAGE TRANSITION
+===================================== */
+
+#transition {
+    position: fixed;
+    inset: 0;
+    background: #070507;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity .7s ease;
+}
+
+#transition.active {
+    opacity: 1;
+}
+
+#transition span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 55px;
+    color: #c8798d;
+
+    transform: scale(.5);
+    opacity: 0;
+
+    transition: .6s ease;
+}
+
+#transition.active span {
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+/* =====================================
+   BUTTON
 ===================================== */
 
 .btn {
     display: inline-block;
+
     padding: 15px 28px;
+
     border: 1px solid #793348;
+
     color: #f5e8eb;
+
     text-decoration: none;
+
     text-transform: uppercase;
+
     letter-spacing: 2px;
+
     font-size: 10px;
+
     transition: .35s ease;
+
     background: #16090e;
+
     cursor: pointer;
+
     font-family: 'Montserrat', sans-serif;
 }
 
 .btn:hover {
     background: #3a1421;
+
     transform: translateY(-3px);
+
     box-shadow: 0 10px 35px #000;
 }
 
@@ -144,60 +194,120 @@ p {
 
 
 /* =====================================
-   LOCK SCREEN
+   QUESTION BOX
 ===================================== */
 
-.lock-box {
+.question-box {
+    max-width: 520px;
+
     margin: 45px auto 0;
-    max-width: 500px;
-    padding: 35px 25px;
-    background: rgba(20, 7, 13, .85);
+
+    padding: 35px 28px;
+
+    background: rgba(20, 7, 13, .9);
+
     border: 1px solid #401827;
+
     box-shadow: 0 20px 70px #000;
+
     transition: .5s ease;
 }
 
-.lock-icon {
-    font-size: 35px;
+.question-number {
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    opacity: .5;
+
     margin-bottom: 15px;
 }
 
-.lock-question {
+.question-icon {
+    font-size: 35px;
+
+    margin-bottom: 15px;
+}
+
+.question {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 27px;
+
+    font-size: 29px;
+
     color: #eadde0;
+
     margin-bottom: 25px;
 }
 
 .answer-input {
     width: 100%;
+
     padding: 15px;
+
     background: #080508;
+
     border: 1px solid #522033;
+
     color: #f5eeee;
+
     outline: none;
+
     text-align: center;
+
     font-family: 'Montserrat', sans-serif;
+
     margin-bottom: 15px;
+
     transition: .3s ease;
 }
 
 .answer-input:focus {
     border-color: #c8798d;
-    box-shadow: 0 0 20px rgba(200,121,141,.15);
+
+    box-shadow:
+        0 0 20px rgba(200,121,141,.15);
+}
+
+.hint {
+    min-height: 45px;
+
+    margin-top: 18px;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 18px;
+
+    font-style: italic;
+
+    color: #c8798d;
+
+    opacity: 0;
+
+    transition: .5s ease;
+}
+
+.hint.show {
+    opacity: 1;
 }
 
 .error {
-    color: #c8798d;
+    min-height: 18px;
+
+    margin-top: 10px;
+
+    color: #b96a7e;
+
     font-size: 11px;
-    margin-top: 12px;
-    min-height: 16px;
 }
 
-.lock-box.unlocked {
-    opacity: 0;
-    transform: translateY(-20px) scale(.95);
-    pointer-events: none;
+.success {
+    color: #dca2b0;
+
+    font-size: 12px;
+
+    margin-top: 12px;
 }
 
 
@@ -206,6 +316,7 @@ p {
 ===================================== */
 
 #intro {
+
     background:
         radial-gradient(
             circle at center,
@@ -213,26 +324,56 @@ p {
             #13080e 38%,
             #070507 75%
         );
-}
 
-.intro-text {
-    position: relative;
-    z-index: 2;
+    text-align: center;
 }
 
 .intro-subtitle {
+
     font-family: 'Cormorant Garamond', serif;
+
     font-size: 23px;
+
     font-style: italic;
+
     margin: 35px auto;
+
     max-width: 600px;
 }
 
 .scroll {
-    margin-top: 55px;
+
+    margin-top: 45px;
+
     font-size: 9px;
+
     letter-spacing: 3px;
+
     opacity: .5;
+}
+
+
+/* =====================================
+   REVEAL
+===================================== */
+
+.reveal {
+
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+
+}
+
+.reveal.visible {
+
+    opacity: 1;
+
+    transform: translateY(0);
 }
 
 
@@ -241,6 +382,7 @@ p {
 ===================================== */
 
 .letter {
+
     background:
         linear-gradient(
             #090609,
@@ -249,9 +391,13 @@ p {
 }
 
 .letter-intro {
+
     margin-top: 15px;
+
     font-family: 'Cormorant Garamond', serif;
+
     font-size: 22px;
+
     font-style: italic;
 }
 
@@ -259,26 +405,42 @@ p {
 /* ENVELOPE */
 
 .envelope-wrapper {
+
     margin: 55px auto 0;
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 }
 
 .envelope {
+
     width: 300px;
+
     height: 200px;
+
     position: relative;
+
     background: #35121d;
-    box-shadow: 0 25px 70px #000;
+
+    box-shadow:
+        0 25px 70px #000;
+
     margin-bottom: 35px;
+
     transition: .8s ease;
+
     perspective: 800px;
 }
 
 .envelope-front {
+
     position: absolute;
+
     inset: 0;
+
     background:
         linear-gradient(
             145deg,
@@ -289,20 +451,28 @@ p {
     border: 1px solid #713044;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
+
     align-items: center;
 
     z-index: 2;
 }
 
 .envelope-heart {
+
     font-size: 55px;
+
     color: #d88b9e;
-    animation: heartbeat 2s ease-in-out infinite;
+
+    animation:
+        heartbeat 2s ease-in-out infinite;
 }
 
 @keyframes heartbeat {
+
     0%, 100% {
         transform: scale(1);
     }
@@ -310,108 +480,171 @@ p {
     50% {
         transform: scale(1.08);
     }
+
 }
 
 .envelope-text {
+
     margin-top: 8px;
+
     font-family: 'Cormorant Garamond', serif;
+
     font-size: 25px;
+
     color: #eadde0;
+
     font-style: italic;
 }
 
 .envelope-flap {
+
     position: absolute;
+
     top: 0;
+
     left: 0;
 
     width: 0;
+
     height: 0;
 
     border-left: 150px solid transparent;
+
     border-right: 150px solid transparent;
+
     border-top: 105px solid #632438;
 
     transform-origin: top;
+
     transition: 1s ease;
 
     z-index: 3;
 }
 
 .envelope-wrapper.open .envelope-flap {
-    transform: rotateX(180deg);
+
+    transform:
+        rotateX(180deg);
 }
 
 .envelope-wrapper.open .envelope {
-    transform: translateY(-15px);
+
+    transform:
+        translateY(-15px);
 }
 
 
 /* LETTER PAPER */
 
 .real-letter {
+
     display: none;
+
     max-width: 780px;
+
     margin: 20px auto 0;
 }
 
 .real-letter.show {
+
     display: block;
-    animation: letterReveal 1.5s ease forwards;
+
+    animation:
+        letterReveal 1.5s ease forwards;
 }
 
 @keyframes letterReveal {
+
     from {
+
         opacity: 0;
-        transform: translateY(35px);
+
+        transform:
+            translateY(35px);
     }
 
     to {
+
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
+
 }
 
 .letter-paper {
+
     background: #f1e5e0;
+
     color: #26191d;
+
     padding: 60px 55px;
+
     text-align: left;
-    box-shadow: 0 30px 90px #000;
+
+    box-shadow:
+        0 30px 90px #000;
+
     position: relative;
 }
 
 .letter-paper::before {
+
     content: "";
+
     position: absolute;
+
     inset: 12px;
+
     border: 1px solid #c99da8;
+
     pointer-events: none;
 }
 
 .letter-paper p {
+
     color: #38272c;
+
     font-family: 'Cormorant Garamond', serif;
+
     font-size: 21px;
+
     line-height: 1.7;
+
     margin-bottom: 22px;
+
     position: relative;
 }
 
 .letter-top {
+
     text-align: center;
+
     color: #9e5269;
+
     font-size: 35px;
+
     margin-bottom: 30px;
 }
 
-.letter-paper .signature {
-    color: #9e5269;
-    margin-top: 35px;
-    position: relative;
-    text-align: right;
-    font-family: 'Cormorant Garamond', serif;
+.signature {
+
+    font-family:
+        'Cormorant Garamond', serif;
+
     font-size: 28px;
+
+    color: #c8798d;
+}
+
+.letter-paper .signature {
+
+    color: #9e5269;
+
+    margin-top: 35px;
+
+    text-align: right;
 }
 
 
@@ -420,70 +653,98 @@ p {
 ===================================== */
 
 .appreciation {
+
     background: #090609;
 }
 
 .cards {
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
     gap: 17px;
+
     margin-top: 50px;
 }
 
 .card {
+
     padding: 32px 22px;
+
     background: #0d070b;
+
     border: 1px solid #34131e;
+
+    opacity: .2;
+
+    filter: blur(4px);
+
+    transform:
+        scale(.94);
+
     transition:
-        opacity .8s ease,
-        transform .8s ease,
+        opacity .9s ease,
+        filter .9s ease,
+        transform .9s ease,
         border-color .4s ease;
 }
 
-.card.locked {
-    opacity: .25;
-    filter: blur(3px);
-    transform: scale(.96);
-}
-
 .card.unlocked {
+
     opacity: 1;
+
     filter: blur(0);
-    transform: translateY(0);
+
+    transform:
+        scale(1);
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    border-color: #773047;
-    box-shadow: 0 20px 45px #000;
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        #773047;
+
+    box-shadow:
+        0 20px 45px #000;
 }
 
 .card-icon {
+
     font-size: 28px;
+
     margin-bottom: 15px;
 }
 
 .card h3 {
+
     color: #df9aaa;
+
     font-size: 28px;
+
     margin-bottom: 12px;
 }
 
 .card p {
+
     font-size: 12px;
 }
 
-.appreciation-question {
-    max-width: 500px;
-    margin: 35px auto 0;
-}
-
 .card-status {
-    margin-top: 15px;
-    font-size: 10px;
-    letter-spacing: 2px;
+
+    margin-top: 18px;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    opacity: .55;
+
     text-transform: uppercase;
-    opacity: .6;
 }
 
 
@@ -492,17 +753,24 @@ p {
 ===================================== */
 
 .memories {
+
     background: #090609;
 }
 
 .photos {
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
     gap: 14px;
+
     margin-top: 45px;
 }
 
 .photo {
+
     aspect-ratio: 4 / 5;
 
     background:
@@ -515,12 +783,16 @@ p {
     border: 1px solid #3a1723;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     color: #a9858e;
 
-    font-family: 'Cormorant Garamond', serif;
+    font-family:
+        'Cormorant Garamond', serif;
+
     font-size: 20px;
 
     text-align: center;
@@ -529,8 +801,12 @@ p {
 }
 
 .photo:hover {
-    transform: scale(1.03);
-    border-color: #8c4058;
+
+    transform:
+        scale(1.03);
+
+    border-color:
+        #8c4058;
 }
 
 
@@ -539,6 +815,7 @@ p {
 ===================================== */
 
 .song {
+
     background:
         radial-gradient(
             circle at center,
@@ -548,7 +825,9 @@ p {
 }
 
 .vinyl {
+
     width: 190px;
+
     height: 190px;
 
     border-radius: 50%;
@@ -570,7 +849,9 @@ p {
         0 0 60px #5b1d32;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     animation:
@@ -578,9 +859,11 @@ p {
 }
 
 .vinyl::after {
+
     content: "♡";
 
     width: 55px;
+
     height: 55px;
 
     border-radius: 50%;
@@ -588,20 +871,26 @@ p {
     background: #511b2c;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     font-size: 35px;
 }
 
 @keyframes spin {
+
     from {
-        transform: rotate(0deg);
+        transform:
+            rotate(0deg);
     }
 
     to {
-        transform: rotate(360deg);
+        transform:
+            rotate(360deg);
     }
+
 }
 
 
@@ -610,6 +899,7 @@ p {
 ===================================== */
 
 .final {
+
     background:
         radial-gradient(
             circle at center,
@@ -619,21 +909,19 @@ p {
 }
 
 .final-message {
+
     max-width: 700px;
+
     margin: 35px auto;
 
-    font-family: 'Cormorant Garamond', serif;
+    font-family:
+        'Cormorant Garamond', serif;
 
     font-size: 25px;
+
     line-height: 1.7;
 
     color: #eadde0;
-}
-
-.final .signature {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    color: #c8798d;
 }
 
 
@@ -642,10 +930,13 @@ p {
 ===================================== */
 
 .heart {
+
     position: fixed;
+
     bottom: -30px;
 
     color: #b04c67;
+
     font-size: 18px;
 
     pointer-events: none;
@@ -657,49 +948,16 @@ p {
 }
 
 @keyframes float {
+
     to {
+
         transform:
             translateY(-110vh)
             rotate(25deg);
 
         opacity: 0;
     }
-}
 
-
-/* =====================================
-   SCREEN TRANSITION
-===================================== */
-
-#transition {
-    position: fixed;
-    inset: 0;
-    background: #070507;
-    z-index: 999;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity .7s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#transition span {
-    color: #c8798d;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 45px;
-    opacity: 0;
-    transform: scale(.7);
-    transition: .6s ease;
-}
-
-#transition.active {
-    opacity: 1;
-}
-
-#transition.active span {
-    opacity: 1;
-    transform: scale(1);
 }
 
 
@@ -711,25 +969,35 @@ p {
 
     .cards,
     .photos {
-        grid-template-columns: 1fr 1fr;
+
+        grid-template-columns:
+            1fr 1fr;
     }
 
     .letter-paper {
-        padding: 40px 25px;
+
+        padding:
+            40px 25px;
     }
 
     .letter-paper p {
+
         font-size: 18px;
     }
 
     .envelope {
+
         width: 280px;
+
         height: 185px;
     }
 
     .envelope-flap {
+
         border-left-width: 140px;
+
         border-right-width: 140px;
+
         border-top-width: 98px;
     }
 
@@ -739,37 +1007,38 @@ p {
 
     .cards,
     .photos {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
     }
 
     .letter-paper {
-        padding: 35px 22px;
+
+        padding:
+            35px 22px;
     }
 
     .letter-paper p {
+
         font-size: 17px;
     }
 
     .envelope {
+
         width: 260px;
+
         height: 175px;
     }
 
     .envelope-flap {
+
         border-left-width: 130px;
+
         border-right-width: 130px;
+
         border-top-width: 92px;
     }
 
-}
-
-
-/* =====================================
-   HIDE ALL PAGES EXCEPT CURRENT
-===================================== */
-
-.page.hidden-page {
-    display: none;
 }
 
 </style>
@@ -780,7 +1049,9 @@ p {
 <body>
 
 
-<!-- TRANSITION SCREEN -->
+<!-- =====================================
+     TRANSITION
+===================================== -->
 
 <div id="transition">
     <span>♡</span>
@@ -788,10 +1059,10 @@ p {
 
 
 <!-- =====================================
-     PAGE 1 — INTRO
+     PAGE 1 — QUESTION
 ===================================== -->
 
-<section id="intro" class="page active">
+<section id="page1" class="page active">
 
     <div class="container">
 
@@ -809,52 +1080,44 @@ p {
             know that every word here is meant for you."
         </div>
 
-        <div class="lock-box" id="introLock">
 
-            <div class="lock-icon">
+        <div class="question-box">
+
+            <div class="question-number">
+                Question 01
+            </div>
+
+            <div class="question-icon">
                 🔐
             </div>
 
-            <div class="lock-question">
-                Who is this entire website for?
+            <div class="question">
+                What do I usually call you?
             </div>
 
             <input
-                type="text"
-                id="introAnswer"
+                id="answer1"
                 class="answer-input"
-                placeholder="Type your answer..."
+                placeholder="Your answer..."
+                autocomplete="off"
             >
 
             <button
                 class="btn"
-                onclick="unlockIntro()"
+                onclick="checkQuestion(1)"
             >
                 Unlock ♡
             </button>
 
             <div
-                class="error"
-                id="introError"
+                id="hint1"
+                class="hint"
             ></div>
 
-        </div>
-
-        <div
-            id="introNext"
-            class="reveal"
-        >
-
-            <div class="scroll">
-                You found the first secret ↓
-            </div>
-
-            <button
-                class="btn next-btn"
-                onclick="goToPage('letter')"
-            >
-                Continue to my letter ♡ →
-            </button>
+            <div
+                id="error1"
+                class="error"
+            ></div>
 
         </div>
 
@@ -864,10 +1127,10 @@ p {
 
 
 <!-- =====================================
-     PAGE 2 — LETTER
+     PAGE 2 — LETTER QUESTION
 ===================================== -->
 
-<section id="letter" class="page hidden-page">
+<section id="page2" class="page">
 
     <div class="container">
 
@@ -884,43 +1147,49 @@ p {
         </p>
 
 
-        <div
-            class="lock-box"
-            id="letterLock"
-        >
+        <div class="question-box">
 
-            <div class="lock-icon">
+            <div class="question-number">
+                Question 02
+            </div>
+
+            <div class="question-icon">
                 💌
             </div>
 
-            <div class="lock-question">
+            <div class="question">
                 What do I call you when I'm being extra cute?
             </div>
 
             <input
-                type="text"
-                id="letterAnswer"
+                id="answer2"
                 class="answer-input"
-                placeholder="Hint: starts with B..."
+                placeholder="Your answer..."
+                autocomplete="off"
             >
 
             <button
                 class="btn"
-                onclick="unlockLetter()"
+                onclick="checkQuestion(2)"
             >
                 Unlock my letter ♡
             </button>
 
             <div
+                id="hint2"
+                class="hint"
+            ></div>
+
+            <div
+                id="error2"
                 class="error"
-                id="letterError"
             ></div>
 
         </div>
 
 
         <div
-            id="letterContent"
+            id="letterReveal"
             class="reveal"
         >
 
@@ -958,8 +1227,8 @@ p {
 
 
             <div
-                class="real-letter"
                 id="realLetter"
+                class="real-letter"
             >
 
                 <div class="letter-paper">
@@ -969,28 +1238,33 @@ p {
                     </div>
 
                     <p>
-                        I don't think I say it enough, but thank you so much baby.
+                        I don't think I say it enough,
+                        but thank you so much baby.
                     </p>
 
                     <p>
-                        Thank you for being there for me, especially during
-                        the moments when everything feels difficult.
-                        Somehow, you have this real power of making
-                        heaviness feel lighter.
+                        Thank you for being there for me,
+                        especially during the moments when
+                        everything feels difficult.
+                        Somehow, you have this real power
+                        of making heaviness feel lighter.
                     </p>
 
                     <p>
-                        Thank you for choosing me. Thank you for being there
-                        with me even when I act like a whole stubborn baby.
-                        And thank you for still being here after so many
-                        fights, arguments, and all the unnecessary drama
-                        I somehow manage to create.
+                        Thank you for choosing me.
+                        Thank you for being there with me
+                        even when I act like a whole stubborn baby.
+                        And thank you for still being here after
+                        so many fights, arguments, and all the
+                        unnecessary drama I somehow manage to create.
                     </p>
 
                     <p>
-                        You make me laugh even when I don't feel like smiling.
-                        You make me blush like hell. You literally turn me
-                        into a red tomato like crazy, dude.
+                        You make me laugh even when I don't
+                        feel like smiling.
+                        You make me blush like hell.
+                        You literally turn me into a red tomato
+                        like crazy, dude.
                         And somehow, you still find that cute.
                     </p>
 
@@ -999,10 +1273,11 @@ p {
                     </p>
 
                     <p>
-                        You listen to all my rants. You listen to things
-                        you don't even relate to. You listen when I have
-                        absolutely nothing sensible to say, and somehow
-                        you still stay and hear me out.
+                        You listen to all my rants.
+                        You listen to things you don't even relate to.
+                        You listen when I have absolutely nothing
+                        sensible to say, and somehow you still stay
+                        and hear me out.
                     </p>
 
                     <p>
@@ -1010,9 +1285,10 @@ p {
                     </p>
 
                     <p>
-                        Even after all those unnecessary "sorrys" that
-                        I pretend I'm tired of, okay, maybe I am a little
-                        tired of them but I still love you a lot.
+                        Even after all those unnecessary "sorrys"
+                        that I pretend I'm tired of — okay,
+                        maybe I am a little tired of them —
+                        I still love you a lot.
                     </p>
 
                     <p>
@@ -1020,11 +1296,13 @@ p {
                     </p>
 
                     <p>
-                        I notice the little things. I notice how much you care.
-                        I notice how you try to make me happy, how you try
-                        to protect me, how you worry about me, and how you
-                        keep trying even when I make things unnecessarily
-                        difficult.
+                        I notice the little things.
+                        I notice how much you care.
+                        I notice how you try to make me happy,
+                        how you try to protect me,
+                        how you worry about me,
+                        and how you keep trying even when
+                        I make things unnecessarily difficult.
                     </p>
 
                     <p>
@@ -1034,12 +1312,13 @@ p {
                     </p>
 
                     <p>
-                        I don't think you realise how much those little
-                        things mean to me.
+                        I don't think you realise how much
+                        those little things mean to me.
                     </p>
 
                     <p>
-                        More than big gifts. More than anything expensive.
+                        More than big gifts.
+                        More than anything expensive.
                         I don't need those things.
                     </p>
 
@@ -1048,10 +1327,13 @@ p {
                     </p>
 
                     <p>
-                        The way you listen. The way you care. The way you try.
+                        The way you listen.
+                        The way you care.
+                        The way you try.
                         The way you make me laugh when I don't want to.
-                        The way you somehow manage to make even an ordinary
-                        day feel a little better just by being there.
+                        The way you somehow manage to make even
+                        an ordinary day feel a little better
+                        just by being there.
                     </p>
 
                     <p>
@@ -1059,10 +1341,11 @@ p {
                     </p>
 
                     <p>
-                        I'm grateful for the random laughter, the difficult days,
-                        the good days, the stupid conversations, the unnecessary
-                        fights, the apologies, the teasing, the little moments,
-                        and everything in between.
+                        I'm grateful for the random laughter,
+                        the difficult days, the good days,
+                        the stupid conversations, the unnecessary
+                        fights, the apologies, the teasing,
+                        the little moments, and everything in between.
                     </p>
 
                     <p>
@@ -1070,8 +1353,8 @@ p {
                     </p>
 
                     <p>
-                        And honestly, you are one of the best things that has
-                        ever happened to me.
+                        And honestly, you are one of the best things
+                        that has ever happened to me.
                     </p>
 
                     <p>
@@ -1099,8 +1382,9 @@ p {
                     </p>
 
                     <p>
-                        And I hope you always know that you mean so much more
-                        to me than I probably know how to say.
+                        And I hope you always know that you mean
+                        so much more to me than I probably know
+                        how to say.
                     </p>
 
                     <div class="signature">
@@ -1109,9 +1393,10 @@ p {
 
                 </div>
 
+
                 <button
                     class="btn next-btn"
-                    onclick="goToPage('more-love')"
+                    onclick="nextPage(3)"
                 >
                     More love for you ♡ →
                 </button>
@@ -1126,10 +1411,10 @@ p {
 
 
 <!-- =====================================
-     PAGE 3 — APPRECIATION
+     PAGE 3 — APPRECIATION QUESTIONS
 ===================================== -->
 
-<section id="more-love" class="page hidden-page appreciation">
+<section id="page3" class="page appreciation">
 
     <div class="container">
 
@@ -1142,50 +1427,60 @@ p {
         </h2>
 
         <p style="margin-top:20px;">
-            Six little things about you are waiting to be unlocked.
+            Seven little things about us are waiting.
         </p>
 
 
-        <div
-            class="lock-box appreciation-question"
-            id="appreciationLock"
-        >
+        <div class="question-box">
 
-            <div class="lock-icon">
+            <div
+                id="appQuestionNumber"
+                class="question-number"
+            >
+                Question 03
+            </div>
+
+            <div class="question-icon">
                 🔐
             </div>
 
             <div
-                class="lock-question"
-                id="appreciationQuestion"
+                id="appQuestion"
+                class="question"
             >
-                What do I call you?
+                What do I call you when I'm pissed?
             </div>
 
             <input
-                type="text"
-                id="appreciationAnswer"
+                id="appAnswer"
                 class="answer-input"
                 placeholder="Your answer..."
+                autocomplete="off"
             >
 
             <button
+                id="appButton"
                 class="btn"
-                onclick="unlockAppreciation()"
+                onclick="checkAppreciation()"
             >
                 Unlock ♡
             </button>
 
             <div
-                class="error"
-                id="appreciationError"
+                id="appHint"
+                class="hint"
             ></div>
 
             <div
+                id="appError"
+                class="error"
+            ></div>
+
+            <div
+                id="appStatus"
                 class="card-status"
-                id="cardStatus"
             >
-                0 / 6 unlocked
+                1 / 5 unlocked
             </div>
 
         </div>
@@ -1193,8 +1488,7 @@ p {
 
         <div class="cards">
 
-
-            <div class="card locked" id="card1">
+            <div class="card" id="card1">
 
                 <div class="card-icon">
                     ☾
@@ -1213,7 +1507,7 @@ p {
             </div>
 
 
-            <div class="card locked" id="card2">
+            <div class="card" id="card2">
 
                 <div class="card-icon">
                     ♡
@@ -1227,13 +1521,14 @@ p {
                     You notice things, you check on me,
                     and you make me feel cared for
                     in ways you probably don't even realise.
-                    And somehow, you still make me sleep early every day.
+                    And somehow, you still make me sleep
+                    early every day.
                 </p>
 
             </div>
 
 
-            <div class="card locked" id="card3">
+            <div class="card" id="card3">
 
                 <div class="card-icon">
                     ✦
@@ -1252,7 +1547,7 @@ p {
             </div>
 
 
-            <div class="card locked" id="card4">
+            <div class="card" id="card4">
 
                 <div class="card-icon">
                     𓆩♡𓆪
@@ -1271,7 +1566,7 @@ p {
             </div>
 
 
-            <div class="card locked" id="card5">
+            <div class="card" id="card5">
 
                 <div class="card-icon">
                     ∞
@@ -1290,7 +1585,7 @@ p {
             </div>
 
 
-            <div class="card locked" id="card6">
+            <div class="card" id="card6">
 
                 <div class="card-icon">
                     🖤
@@ -1308,23 +1603,17 @@ p {
 
             </div>
 
-
         </div>
 
 
-        <div
-            id="appreciationNext"
-            class="reveal"
+        <button
+            id="appNext"
+            class="btn next-btn"
+            style="display:none;"
+            onclick="nextPage(4)"
         >
-
-            <button
-                class="btn next-btn"
-                onclick="goToPage('memories')"
-            >
-                Unlock our memories ♡ →
-            </button>
-
-        </div>
+            Continue to our memories ♡ →
+        </button>
 
     </div>
 
@@ -1335,7 +1624,7 @@ p {
      PAGE 4 — MEMORIES
 ===================================== -->
 
-<section id="memories" class="page hidden-page memories">
+<section id="page4" class="page memories">
 
     <div class="container">
 
@@ -1347,43 +1636,50 @@ p {
             Someone I am obsessed with.
         </h2>
 
-        <div
-            class="lock-box"
-            id="memoriesLock"
-        >
 
-            <div class="lock-icon">
+        <div class="question-box">
+
+            <div class="question-number">
+                Question 07
+            </div>
+
+            <div class="question-icon">
                 📸
             </div>
 
-            <div class="lock-question">
-                What am I always asking you for?
+            <div class="question">
+                When did I see you for the first time?
             </div>
 
             <input
-                type="text"
-                id="memoriesAnswer"
+                id="answer7"
                 class="answer-input"
-                placeholder="Hint: starts with P..."
+                placeholder="Your answer..."
+                autocomplete="off"
             >
 
             <button
                 class="btn"
-                onclick="unlockMemories()"
+                onclick="checkQuestion(7)"
             >
                 Reveal our memories ♡
             </button>
 
             <div
+                id="hint7"
+                class="hint"
+            ></div>
+
+            <div
+                id="error7"
                 class="error"
-                id="memoriesError"
             ></div>
 
         </div>
 
 
         <div
-            id="memoriesContent"
+            id="memoryReveal"
             class="reveal"
         >
 
@@ -1435,7 +1731,7 @@ p {
 
             <button
                 class="btn next-btn"
-                onclick="goToPage('song')"
+                onclick="nextPage(5)"
             >
                 One more thing ♡ →
             </button>
@@ -1451,7 +1747,7 @@ p {
      PAGE 5 — SONG
 ===================================== -->
 
-<section id="song" class="page hidden-page song">
+<section id="page5" class="page song">
 
     <div class="container">
 
@@ -1464,43 +1760,49 @@ p {
         </h2>
 
 
-        <div
-            class="lock-box"
-            id="songLock"
-        >
+        <div class="question-box">
 
-            <div class="lock-icon">
+            <div class="question-number">
+                A little memory
+            </div>
+
+            <div class="question-icon">
                 🎵
             </div>
 
-            <div class="lock-question">
+            <div class="question">
                 What song reminds me of us?
             </div>
 
             <input
-                type="text"
-                id="songAnswer"
+                id="answer8"
                 class="answer-input"
-                placeholder="Type the song..."
+                placeholder="Your answer..."
+                autocomplete="off"
             >
 
             <button
                 class="btn"
-                onclick="unlockSong()"
+                onclick="checkQuestion(8)"
             >
                 Unlock our song ♡
             </button>
 
             <div
+                id="hint8"
+                class="hint"
+            ></div>
+
+            <div
+                id="error8"
                 class="error"
-                id="songError"
             ></div>
 
         </div>
 
 
         <div
-            id="songContent"
+            id="songReveal"
             class="reveal"
         >
 
@@ -1537,7 +1839,7 @@ p {
 
             <button
                 class="btn next-btn"
-                onclick="goToPage('final')"
+                onclick="nextPage(6)"
             >
                 Finally... ♡ →
             </button>
@@ -1553,7 +1855,7 @@ p {
      PAGE 6 — FINAL
 ===================================== -->
 
-<section id="final" class="page hidden-page final">
+<section id="page6" class="page final">
 
     <div class="container">
 
@@ -1562,49 +1864,56 @@ p {
         </div>
 
 
-        <div
-            class="lock-box"
-            id="finalLock"
-        >
+        <div class="question-box">
 
-            <div class="lock-icon">
+            <div class="question-number">
+                Last question
+            </div>
+
+            <div class="question-icon">
                 ♡
             </div>
 
-            <div class="lock-question">
-                Last question... who is my favourite cutie?
+            <div class="question">
+                Who is my favourite one?
             </div>
 
             <input
-                type="text"
-                id="finalAnswer"
+                id="answer9"
                 class="answer-input"
-                placeholder="You know this one..."
+                placeholder="You already know..."
+                autocomplete="off"
             >
 
             <button
                 class="btn"
-                onclick="unlockFinal()"
+                onclick="checkQuestion(9)"
             >
                 Reveal the last page ♡
             </button>
 
             <div
+                id="hint9"
+                class="hint"
+            ></div>
+
+            <div
+                id="error9"
                 class="error"
-                id="finalError"
             ></div>
 
         </div>
 
 
         <div
-            id="finalContent"
+            id="finalReveal"
             class="reveal"
         >
 
-            <h2>
+            <h2 style="margin-top:50px;">
                 Stay, okay?
             </h2>
+
 
             <div class="final-message">
 
@@ -1663,153 +1972,346 @@ p {
 
 
 /* =====================================
-   PAGE NAVIGATION
+   QUESTION DATA
 ===================================== */
 
-function goToPage(pageId) {
+const questions = {
 
-    const transition =
-        document.getElementById("transition");
+    1: {
 
-    const currentPage =
-        document.querySelector(".page.active");
+        answers: [
+            "mera baccha",
+            "mera bachha",
+            "baccha",
+            "bachha"
+        ],
 
-    const nextPage =
-        document.getElementById(pageId);
+        hints: [
 
-    transition.classList.add("active");
+            "It's one of my favourite names for you.",
 
-    setTimeout(() => {
+            "It has something to do with you being my baby.",
 
-        if (currentPage) {
-            currentPage.classList.remove("active");
-            currentPage.classList.add("hidden-page");
-        }
+            "Starts with \"Mera...\" 👀"
 
-        nextPage.classList.remove("hidden-page");
+        ]
 
-        window.scrollTo({
-            top: 0,
-            behavior: "instant"
-        });
+    },
 
-        setTimeout(() => {
 
-            nextPage.classList.add("active");
+    2: {
 
-            transition.classList.remove("active");
+        answers: [
+            "betuuu",
+            "betu",
+            "betuu",
+            "betuuu"
+        ],
 
-        }, 100);
+        hints: [
 
-    }, 650);
-}
+            "It's another nickname I use for you.",
+
+            "Starts with B.",
+
+            "I add way too many U's to it 😭"
+
+        ]
+
+    },
+
+
+    7: {
+
+        answers: [
+            "annual day screening",
+            "annual day",
+            "annual day screen",
+            "annual screening"
+        ],
+
+        hints: [
+
+            "It happened at school.",
+
+            "Think of a big school event.",
+
+            "Annual Day + something we watched 👀"
+
+        ]
+
+    },
+
+
+    8: {
+
+        answers: [
+            "samjhawan",
+            "samjhawan arijit singh",
+            "samjhawan shreya ghoshal"
+        ],
+
+        hints: [
+
+            "It's one of our songs.",
+
+            "It's a Hindi song.",
+
+            "Starts with \"Sam...\" 🎵"
+
+        ]
+
+    },
+
+
+    9: {
+
+        answers: [
+            "me",
+            "you",
+            "me obviously",
+            "you obviously",
+            "mohammad",
+            "pookie"
+        ],
+
+        hints: [
+
+            "You should definitely know this.",
+
+            "It's the person answering this question.",
+
+            "ME. Obviously. 😭"
+
+        ]
+
+    }
+
+};
 
 
 /* =====================================
-   ANSWER CHECKER
+   HINT COUNTERS
 ===================================== */
 
-function checkAnswer(inputId, answers) {
+let attempts = {
+
+    1: 0,
+    2: 0,
+    7: 0,
+    8: 0,
+    9: 0
+
+};
+
+
+/* =====================================
+   NORMAL QUESTIONS
+===================================== */
+
+function checkQuestion(number) {
+
+    const input =
+        document.getElementById(
+            "answer" + number
+        );
+
+    const error =
+        document.getElementById(
+            "error" + number
+        );
+
+    const hint =
+        document.getElementById(
+            "hint" + number
+        );
 
     const value =
-        document
-        .getElementById(inputId)
-        .value
+        input.value
         .trim()
         .toLowerCase();
 
-    return answers.some(answer =>
-        value === answer.toLowerCase()
-    );
-}
+
+    const correct =
+        questions[number].answers.some(
+            answer =>
+                value === answer.toLowerCase()
+        );
 
 
-/* =====================================
-   INTRO UNLOCK
-===================================== */
+    if (correct) {
 
-function unlockIntro() {
+        error.textContent =
+            "Correct. You actually know me. ♡";
 
-    if (
-        checkAnswer(
-            "introAnswer",
-            ["mohammad", "mohammed", "my pookie", "pookie", "mera baccha", "betuuu"]
-        )
-    ) {
+        error.className =
+            "success";
 
-        document
-            .getElementById("introLock")
-            .classList.add("unlocked");
 
-        setTimeout(() => {
+        input.disabled = true;
 
-            document
-                .getElementById("introNext")
-                .classList.add("visible");
 
-        }, 500);
+        unlockNormalContent(number);
+
 
     } else {
 
-        document
-            .getElementById("introError")
-            .textContent =
-            "Hmm... you should know this one 😭 Try again.";
+        attempts[number]++;
+
+
+        error.className =
+            "error";
+
+
+        if (attempts[number] === 1) {
+
+            hint.textContent =
+                "Hint 1 → " +
+                questions[number].hints[0];
+
+            hint.classList.add("show");
+
+            error.textContent =
+                "Hmm... nope 😭 Here's a little help.";
+
+        }
+
+        else if (attempts[number] === 2) {
+
+            hint.textContent =
+                "Hint 2 → " +
+                questions[number].hints[1];
+
+            hint.classList.add("show");
+
+            error.textContent =
+                "Still wrong 😭 Okay, another hint.";
+
+        }
+
+        else {
+
+            hint.textContent =
+                "Hint 3 → " +
+                questions[number].hints[2];
+
+            hint.classList.add("show");
+
+            error.textContent =
+                "Okay fine, I'm basically giving it to you now 😭";
+
+        }
 
     }
+
 }
 
 
 /* =====================================
-   LETTER UNLOCK
+   NORMAL REVEALS
 ===================================== */
 
-function unlockLetter() {
+function unlockNormalContent(number) {
 
-    if (
-        checkAnswer(
-            "letterAnswer",
-            ["betuuu", "betu", "betuu", "betuuu ♡", "mera baccha", "baccha"]
-        )
-    ) {
-
-        document
-            .getElementById("letterLock")
-            .classList.add("unlocked");
+    if (number === 1) {
 
         setTimeout(() => {
 
-            document
-                .getElementById("letterContent")
-                .classList.add("visible");
+            nextPage(2);
 
-        }, 500);
-
-    } else {
-
-        document
-            .getElementById("letterError")
-            .textContent =
-            "Wrong answer, pookie. You know what I call you 😭";
+        }, 1000);
 
     }
+
+
+    if (number === 2) {
+
+        const reveal =
+            document.getElementById(
+                "letterReveal"
+            );
+
+        reveal.classList.add("visible");
+
+        document
+            .querySelector("#page2 .question-box")
+            .style.display = "none";
+
+    }
+
+
+    if (number === 7) {
+
+        const reveal =
+            document.getElementById(
+                "memoryReveal"
+            );
+
+        reveal.classList.add("visible");
+
+        document
+            .querySelector("#page4 .question-box")
+            .style.display = "none";
+
+    }
+
+
+    if (number === 8) {
+
+        const reveal =
+            document.getElementById(
+                "songReveal"
+            );
+
+        reveal.classList.add("visible");
+
+        document
+            .querySelector("#page5 .question-box")
+            .style.display = "none";
+
+    }
+
+
+    if (number === 9) {
+
+        const reveal =
+            document.getElementById(
+                "finalReveal"
+            );
+
+        reveal.classList.add("visible");
+
+        document
+            .querySelector("#page6 .question-box")
+            .style.display = "none";
+
+    }
+
 }
 
 
 /* =====================================
-   OPEN LETTER
+   LETTER
 ===================================== */
 
 function openLetter() {
 
+    const envelope =
+        document.getElementById(
+            "envelope"
+        );
+
     const wrapper =
-        document.getElementById("letterContent")
-        .querySelector(".envelope-wrapper");
+        envelope.parentElement;
 
     const letter =
-        document.getElementById("realLetter");
+        document.getElementById(
+            "realLetter"
+        );
+
 
     wrapper.classList.add("open");
+
 
     setTimeout(() => {
 
@@ -1830,249 +2332,495 @@ function openLetter() {
 
 
 /* =====================================
-   APPRECIATION
+   APPRECIATION QUESTIONS
 ===================================== */
-
-let currentCard = 0;
-
-const appreciationAnswers = [
-    ["mera baccha", "baccha", "betuuu", "betu"],
-    ["me", "you", "mohammad"],
-    ["you", "mohammad", "betuuu"],
-    ["you", "mohammad", "betuuu"],
-    ["you", "mohammad", "betuuu"],
-    ["you", "mohammad", "betuuu"]
-];
 
 const appreciationQuestions = [
 
-    "What do I call you?",
-    "Who makes me feel cared for?",
-    "Who makes me laugh like an idiot?",
-    "Who pampers me?",
-    "Who means so much to me?",
-    "Who do I want exactly as they are?"
+    {
+
+        question:
+            "What do I call you when I'm pissed?",
+
+        answers: [
+            "mohammad nadeem",
+            "mohammad",
+            "nadeem"
+        ],
+
+        hints: [
+
+            "I'm suddenly very formal with you.",
+
+            "I stop using all the cute nicknames.",
+
+            "Your full name. 👀"
+
+        ]
+
+    },
+
+
+    {
+
+        question:
+            "Who is my sautan?",
+
+        answers: [
+            "akhilesh"
+        ],
+
+        hints: [
+
+            "It's someone you're probably not expecting.",
+
+            "Yes, I'm jealous of him 😭.",
+
+            "Starts with A."
+
+        ]
+
+    },
+
+
+    {
+
+        question:
+            "Who makes me laugh like an idiot?",
+
+        answers: [
+            "you",
+            "me",
+            "mohammad"
+        ],
+
+        hints: [
+
+            "Think about who you're talking to.",
+
+            "It's someone who is literally part of this website.",
+
+            "Look in the mirror, genius 😭."
+
+        ]
+
+    },
+
+
+    {
+
+        question:
+            "Who is my favourite one?",
+
+        answers: [
+            "me",
+            "you",
+            "me obviously",
+            "you obviously"
+        ],
+
+        hints: [
+
+            "You should definitely know this.",
+
+            "It's the person answering this question.",
+
+            "ME. Obviously. 😭"
+
+        ]
+
+    },
+
+
+    {
+
+        question:
+            "Who do I want exactly as they are?",
+
+        answers: [
+            "you",
+            "mohammad",
+            "me"
+        ],
+
+        hints: [
+
+            "It's someone very important to me.",
+
+            "It's the person this website is about.",
+
+            "It's YOU. Obviously. ♡"
+
+        ]
+
+    }
+
 ];
 
 
-function unlockAppreciation() {
+let appreciationIndex = 0;
+
+let appreciationAttempts = 0;
+
+
+/* =====================================
+   APPRECIATION CHECKER
+===================================== */
+
+function checkAppreciation() {
+
+    const current =
+        appreciationQuestions[
+            appreciationIndex
+        ];
+
 
     const input =
-        document.getElementById("appreciationAnswer");
+        document.getElementById(
+            "appAnswer"
+        );
 
     const error =
-        document.getElementById("appreciationError");
+        document.getElementById(
+            "appError"
+        );
 
-    if (
-        currentCard < 6 &&
-        checkAnswer(
-            "appreciationAnswer",
-            appreciationAnswers[currentCard]
-        )
-    ) {
+    const hint =
+        document.getElementById(
+            "appHint"
+        );
 
-        currentCard++;
+
+    const value =
+        input.value
+        .trim()
+        .toLowerCase();
+
+
+    const correct =
+        current.answers.some(
+            answer =>
+                value === answer.toLowerCase()
+        );
+
+
+    if (correct) {
+
+        const cardNumber =
+            appreciationIndex + 1;
+
 
         document
-            .getElementById("card" + currentCard)
-            .classList.remove("locked");
-
-        document
-            .getElementById("card" + currentCard)
+            .getElementById(
+                "card" + cardNumber
+            )
             .classList.add("unlocked");
 
-        document
-            .getElementById("cardStatus")
-            .textContent =
-            currentCard + " / 6 unlocked";
+
+        appreciationIndex++;
+
+        appreciationAttempts = 0;
 
         input.value = "";
-        error.textContent = "";
 
-        if (currentCard < 6) {
+        hint.textContent = "";
+
+        hint.classList.remove("show");
+
+
+        if (
+            appreciationIndex <
+            appreciationQuestions.length
+        ) {
 
             document
-                .getElementById("appreciationQuestion")
+                .getElementById(
+                    "appQuestion"
+                )
                 .textContent =
-                appreciationQuestions[currentCard];
+                appreciationQuestions[
+                    appreciationIndex
+                ].question;
+
+
+            document
+                .getElementById(
+                    "appQuestionNumber"
+                )
+                .textContent =
+                "Question " +
+                (appreciationIndex + 3);
+
+
+            document
+                .getElementById(
+                    "appStatus"
+                )
+                .textContent =
+                (appreciationIndex + 1) +
+                " / 5 unlocked";
+
+
+            error.className =
+                "success";
+
+            error.textContent =
+                "Correct ♡ Next one...";
+
 
         } else {
 
             document
-                .getElementById("appreciationQuestion")
+                .getElementById(
+                    "appQuestion"
+                )
                 .textContent =
                 "You unlocked everything. ♡";
 
-            input.style.display = "none";
 
             document
-                .querySelector("#appreciationLock .btn")
-                .style.display = "none";
+                .getElementById(
+                    "appQuestionNumber"
+                )
+                .textContent =
+                "All unlocked";
 
-            setTimeout(() => {
 
-                document
-                    .getElementById("appreciationNext")
-                    .classList.add("visible");
+            document
+                .getElementById(
+                    "appStatus"
+                )
+                .textContent =
+                "5 / 5 unlocked";
 
-            }, 700);
+
+            input.style.display =
+                "none";
+
+
+            document
+                .getElementById(
+                    "appButton"
+                )
+                .style.display =
+                "none";
+
+
+            error.className =
+                "success";
+
+            error.textContent =
+                "Okayyy, you actually know me. ♡";
+
+
+            document
+                .getElementById(
+                    "appNext"
+                )
+                .style.display =
+                "inline-block";
+
         }
 
+
     } else {
 
-        error.textContent =
-            "Nope 😭 Think about who this whole website is about.";
+        appreciationAttempts++;
+
+
+        if (
+            appreciationAttempts === 1
+        ) {
+
+            hint.textContent =
+                "Hint 1 → " +
+                current.hints[0];
+
+            hint.classList.add("show");
+
+            error.textContent =
+                "Nope 😭 Here's your first hint.";
+
+        }
+
+        else if (
+            appreciationAttempts === 2
+        ) {
+
+            hint.textContent =
+                "Hint 2 → " +
+                current.hints[1];
+
+            hint.classList.add("show");
+
+            error.textContent =
+                "Still wrong 😭 One more.";
+
+        }
+
+        else {
+
+            hint.textContent =
+                "Hint 3 → " +
+                current.hints[2];
+
+            hint.classList.add("show");
+
+            error.textContent =
+                "Okay fine, I'm basically giving it away 😭";
+
+        }
 
     }
+
 }
 
 
 /* =====================================
-   MEMORIES
+   PAGE NAVIGATION
 ===================================== */
 
-function unlockMemories() {
+function nextPage(number) {
 
-    if (
-        checkAnswer(
-            "memoriesAnswer",
-            ["pictures", "photos", "pics", "pictures of you", "photos of you"]
-        )
-    ) {
+    const transition =
+        document.getElementById(
+            "transition"
+        );
 
-        document
-            .getElementById("memoriesLock")
-            .classList.add("unlocked");
+
+    const current =
+        document.querySelector(
+            ".page.active"
+        );
+
+
+    const next =
+        document.getElementById(
+            "page" + number
+        );
+
+
+    transition.classList.add(
+        "active"
+    );
+
+
+    setTimeout(() => {
+
+        current.classList.remove(
+            "active"
+        );
+
+
+        next.classList.add(
+            "active"
+        );
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
+
 
         setTimeout(() => {
 
-            document
-                .getElementById("memoriesContent")
-                .classList.add("visible");
+            transition.classList.remove(
+                "active"
+            );
 
-        }, 500);
+        }, 300);
 
-    } else {
 
-        document
-            .getElementById("memoriesError")
-            .textContent =
-            "Come onnn 😭 You know what I always ask for.";
+    }, 700);
 
-    }
 }
 
 
 /* =====================================
-   SONG
+   ENTER KEY
 ===================================== */
 
-function unlockSong() {
+document.addEventListener(
+    "keydown",
+    function(event) {
 
-    if (
-        checkAnswer(
-            "songAnswer",
-            ["samjhawan", "samjhawan arijit singh", "samjhawan shreya ghoshal"]
-        )
-    ) {
+        if (
+            event.key !== "Enter"
+        ) return;
 
-        document
-            .getElementById("songLock")
-            .classList.add("unlocked");
 
-        setTimeout(() => {
+        const active =
+            document.querySelector(
+                ".page.active"
+            );
 
-            document
-                .getElementById("songContent")
-                .classList.add("visible");
 
-        }, 500);
+        if (!active) return;
 
-    } else {
 
-        document
-            .getElementById("songError")
-            .textContent =
-            "Excuse me??? Our song 😭 Try again.";
+        if (
+            active.id === "page1"
+        ) {
+
+            checkQuestion(1);
+
+        }
+
+        else if (
+            active.id === "page2"
+        ) {
+
+            const input =
+                document.getElementById(
+                    "answer2"
+                );
+
+            if (
+                input &&
+                !input.disabled
+            ) {
+
+                checkQuestion(2);
+
+            }
+
+        }
+
+        else if (
+            active.id === "page3"
+        ) {
+
+            checkAppreciation();
+
+        }
+
+        else if (
+            active.id === "page4"
+        ) {
+
+            checkQuestion(7);
+
+        }
+
+        else if (
+            active.id === "page5"
+        ) {
+
+            checkQuestion(8);
+
+        }
+
+        else if (
+            active.id === "page6"
+        ) {
+
+            checkQuestion(9);
+
+        }
 
     }
-}
-
-
-/* =====================================
-   FINAL
-===================================== */
-
-function unlockFinal() {
-
-    if (
-        checkAnswer(
-            "finalAnswer",
-            ["mohammad", "my pookie", "pookie", "mera baccha", "betuuu", "betu"]
-        )
-    ) {
-
-        document
-            .getElementById("finalLock")
-            .classList.add("unlocked");
-
-        setTimeout(() => {
-
-            document
-                .getElementById("finalContent")
-                .classList.add("visible");
-
-        }, 500);
-
-    } else {
-
-        document
-            .getElementById("finalError")
-            .textContent =
-            "Really? After all of this? 😭";
-
-    }
-}
-
-
-/* =====================================
-   ENTER KEY SUPPORT
-===================================== */
-
-document.addEventListener("keydown", function(event) {
-
-    if (event.key !== "Enter") return;
-
-    const active =
-        document.querySelector(".page.active");
-
-    if (!active) return;
-
-    if (active.id === "intro") {
-        unlockIntro();
-    }
-
-    else if (active.id === "letter") {
-        unlockLetter();
-    }
-
-    else if (active.id === "more-love") {
-        unlockAppreciation();
-    }
-
-    else if (active.id === "memories") {
-        unlockMemories();
-    }
-
-    else if (active.id === "song") {
-        unlockSong();
-    }
-
-    else if (active.id === "final") {
-        unlockFinal();
-    }
-
-});
+);
 
 
 /* =====================================
@@ -2082,34 +2830,67 @@ document.addEventListener("keydown", function(event) {
 function createHeart() {
 
     const heart =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-    heart.className = "heart";
+
+    heart.className =
+        "heart";
+
 
     heart.innerHTML =
-        ["♡", "♥", "✦", "⋆"][
-            Math.floor(Math.random() * 4)
+        [
+            "♡",
+            "♥",
+            "✦",
+            "⋆"
+        ][
+            Math.floor(
+                Math.random() * 4
+            )
         ];
 
+
     heart.style.left =
-        Math.random() * 100 + "%";
+        Math.random() * 100 +
+        "%";
+
 
     heart.style.fontSize =
-        (12 + Math.random() * 18) + "px";
+        (
+            12 +
+            Math.random() * 18
+        ) +
+        "px";
+
 
     heart.style.animationDuration =
-        (5 + Math.random() * 5) + "s";
+        (
+            5 +
+            Math.random() * 5
+        ) +
+        "s";
 
-    document.body.appendChild(heart);
+
+    document.body.appendChild(
+        heart
+    );
+
 
     setTimeout(() => {
+
         heart.remove();
+
     }, 10000);
 
 }
 
-setInterval(createHeart, 900);
 
+setInterval(
+    createHeart,
+    900
+);
 
 </script>
 
